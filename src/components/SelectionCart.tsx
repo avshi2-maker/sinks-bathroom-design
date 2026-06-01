@@ -1,19 +1,29 @@
-﻿"use client";
-
+"use client";
+import { useEffect, useState } from "react";
 import { useSelection } from "@/context/SelectionContext";
-
 export function SelectionCart() {
   const { items, remove, count } = useSelection();
+  const [formVisible, setFormVisible] = useState(false);
 
-  if (count === 0) return null;
+  // Hide the floating bar while the lead form is on screen (it shows picks itself).
+  useEffect(() => {
+    const form = document.getElementById("lead-form");
+    if (!form) return;
+    const observer = new IntersectionObserver(
+      (entries) => setFormVisible(entries[0]?.isIntersecting ?? false),
+      { threshold: 0.1 },
+    );
+    observer.observe(form);
+    return () => observer.disconnect();
+  }, []);
 
+  if (count === 0 || formVisible) return null;
   const scrollToForm = () => {
     const form = document.getElementById("lead-form");
     if (form) {
       form.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
-
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-[var(--color-charcoal)] border-t-2 border-[var(--color-brass)] shadow-2xl">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
@@ -21,7 +31,6 @@ export function SelectionCart() {
           <span className="text-[var(--color-brass)] font-black text-xl">{count}</span>
           <span className="text-[var(--color-cream)] text-sm hidden sm:inline">פריטים נבחרו</span>
         </div>
-
         <div className="flex-1 flex items-center gap-2 overflow-x-auto py-1">
           {items.map((item) => (
             <div key={item.id} className="relative shrink-0 group">
@@ -31,7 +40,6 @@ export function SelectionCart() {
             </div>
           ))}
         </div>
-
         <button type="button" onClick={scrollToForm} className="shrink-0 bg-[var(--color-brass)] text-[var(--color-charcoal)] px-5 py-3 rounded-full font-bold text-sm hover:bg-[var(--color-cream)] transition-colors duration-300 whitespace-nowrap">המשך לטופס ←</button>
       </div>
     </div>

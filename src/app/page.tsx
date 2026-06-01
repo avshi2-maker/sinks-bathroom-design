@@ -1,14 +1,14 @@
-﻿import { Header } from "@/components/Header";
+import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { WhyUs } from "@/components/WhyUs";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Gallery } from "@/components/Gallery";
 import { ForDesigners } from "@/components/ForDesigners";
+import { AddOns } from "@/components/AddOns";
 import { LeadForm } from "@/components/LeadForm";
 import { Footer } from "@/components/Footer";
 import { SelectionProvider } from "@/context/SelectionContext";
 import { SelectionCart } from "@/components/SelectionCart";
-
 export default function Home() {
   return (
     <SelectionProvider>
@@ -23,6 +23,7 @@ export default function Home() {
          */}
         <Gallery />
         <ForDesigners />
+        <AddOns />
         <section id="lead-form" className="py-20 md:py-32 bg-[var(--color-cream-darker)]">
           <div className="max-w-3xl mx-auto px-6">
             <div className="text-center mb-12">

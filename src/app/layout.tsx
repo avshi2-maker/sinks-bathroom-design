@@ -2,6 +2,7 @@
 import { Heebo } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+import { StickyWhatsApp } from "@/components/StickyWhatsApp";
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -173,8 +174,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">{children}<StickyWhatsApp /></body>
       <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
 }
+

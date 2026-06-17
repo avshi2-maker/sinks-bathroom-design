@@ -42,7 +42,6 @@ const SIZE_BUCKETS = [
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "dqdku88vv";
 const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_LEAD_PRESET || "marble_lead_uploads";
-const BUSINESS_WHATSAPP = "972505231042";
 const MAX_FILES = 5;
 const MAX_SIZE_MB = 10;
 const ACCEPTED = ".jpg,.jpeg,.png,.webp,.mp4,.mov,.pdf";
@@ -60,32 +59,6 @@ function trackEvent(eventName: string, params: Record<string, string | number>) 
 
 function labelFor(list: { value: string; label: string }[], val: string): string {
   return list.find((x) => x.value === val)?.label || "—";
-}
-
-function buildWhatsAppMessage(lead: SubmittedLead): string {
-  const lines = [
-    "שלום, מילאתי טופס באתר מרבל ארט:",
-    "",
-    `שם: ${lead.full_name}`,
-    `טלפון: ${lead.phone}`,
-    lead.city_he ? `עיר: ${lead.city_he}` : "",
-    `סוג פרויקט: ${labelFor(PROJECT_TYPES, lead.project_type)}`,
-    `סוג התקנה: ${labelFor(MOUNT_TYPES, lead.mount_type)}`,
-    `גודל משוער: ${labelFor(SIZE_BUCKETS, lead.size_bucket)}`,
-    `תקציב: ${labelFor(BUDGET_TIERS, lead.budget_tier)}`,
-    lead.notes_he ? `הערות: ${lead.notes_he}` : "",
-  ];
-  if (lead.picks.length > 0) {
-    lines.push("");
-    lines.push("הפריטים שבחרתי מהגלריה:");
-    lead.picks.forEach((p, i) => { lines.push(`${i + 1}. ${p.name} (${p.section})`); });
-  }
-  if (lead.files.length > 0) {
-    lines.push("");
-    lines.push("קבצים מצורפים:");
-    lead.files.forEach((f, i) => { lines.push(`${i + 1}. ${f.url}`); });
-  }
-  return lines.filter((l) => l !== "").join("\n");
 }
 
 export function LeadForm() {
@@ -183,18 +156,13 @@ export function LeadForm() {
   }
 
   if (done && submitted) {
-    const waMessage = encodeURIComponent(buildWhatsAppMessage(submitted));
-    const waHref = `https://wa.me/${BUSINESS_WHATSAPP}?text=${waMessage}`;
-    const onWaClick = () => trackEvent("whatsapp_lead_sent", { location: "thank_you", files: submitted.files.length, picks: submitted.picks.length });
     return (
       <div className="bg-[var(--color-cream)] border-2 border-[var(--color-brass)] rounded-2xl p-10 md:p-14 text-center">
         <div className="w-16 h-16 bg-[var(--color-brass)] rounded-full mx-auto mb-6 flex items-center justify-center">
           <span className="text-[var(--color-charcoal)] text-3xl font-black">✓</span>
         </div>
         <h3 className="text-[var(--color-charcoal)] text-3xl font-black mb-4">תודה רבה!</h3>
-        <p className="text-[var(--color-charcoal)]/70 text-lg max-w-md mx-auto leading-relaxed mb-8">קיבלנו את הפרטים. כדי שנחזור אליכם מהר יותר — שלחו לנו את הפרטים גם בוואטסאפ בלחיצה אחת:</p>
-        <a href={waHref} target="_blank" rel="noopener noreferrer" onClick={onWaClick} className="inline-block bg-[#25D366] text-white py-4 px-8 rounded-full font-bold text-lg hover:bg-[#1da851] transition-colors duration-300">שלחו לנו את הפרטים בוואטסאפ ←</a>
-        <p className="text-[var(--color-charcoal)]/50 text-sm mt-6">או שנציג יחזור אליכם תוך 24-48 שעות.</p>
+        <p className="text-[var(--color-charcoal)]/70 text-lg max-w-md mx-auto leading-relaxed">קיבלנו את הפרטים שלכם בהצלחה. נחזור אליכם תוך 24-48 שעות עם הצעה והדמיה מותאמת אישית.</p>
       </div>
     );
   }
@@ -322,7 +290,7 @@ export function LeadForm() {
 
       <button type="submit" disabled={pending || uploading} className="w-full bg-[var(--color-charcoal)] text-[var(--color-cream)] py-5 rounded-full font-bold text-lg hover:bg-[var(--color-brass)] hover:text-[var(--color-charcoal)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300">{pending ? "שולח..." : "שלחו אלינו פרטים ←"}</button>
 
-      <p className="text-center text-[var(--color-charcoal)]/50 text-xs">לא נשלח ספאם. נציג יחזור אליכם תוך 24-48 שעות בוואטסאפ.</p>
+      <p className="text-center text-[var(--color-charcoal)]/50 text-xs">לא נשלח ספאם. נציג יחזור אליכם תוך 24-48 שעות.</p>
     </form>
   );
 }

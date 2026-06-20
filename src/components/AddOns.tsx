@@ -3,60 +3,58 @@
 // "Complete your space" upsell section — change-order add-ons Ales can deliver.
 // Each item is PICKABLE into the existing SelectionContext cart (section "תוספות"),
 // so it flows into the LeadForm + single WhatsApp message exactly like gallery picks.
-// No prices (price on request). Add-ons with an `img` render as a photo card; those
-// without fall back to the brass ◆ placeholder so the page works at every stage.
+// No prices (price on request). Each add-on has an AI render (Cloudinary); items
+// without one fall back to the brass ◆ placeholder.
 import { useSelection } from "@/context/SelectionContext";
 
-// Tiny brass "◆" on charcoal as an inline SVG data-URI — fallback thumbnail for
-// add-ons that don't yet have a real render photo.
 const ADDON_THUMB =
   "data:image/svg+xml;utf8," +
   encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="64" height="64" fill="#2b2b2b"/><text x="32" y="42" font-size="30" text-anchor="middle" fill="#b08d57">\u25C6</text></svg>',
   );
 
+// Cloudinary render base — version-free URL, public id = add-on id.
+const IMG = (id: string) => `https://res.cloudinary.com/dqdku88vv/image/upload/${id}.png`;
+
 type AddOn = { id: string; name: string; img?: string };
 
-// To add a render: paste its URL into the `img` field of the matching item below.
-// Until then the item shows the elegant ◆ placeholder and still works as a pick.
 const categories: { badge: string; title: string; items: AddOn[] }[] = [
   {
     badge: "01",
     title: "אבזור ומתקנים",
     items: [
-      { id: "addon-towel-rail", name: "מתקן תליית מגבות" },
-      { id: "addon-soap-brush", name: "מתקני תלייה לסבון ומברשות" },
-      { id: "addon-upper-shelves", name: "מדפים עליונים" },
-      { id: "addon-lower-shelf", name: "מדף תחתון" },
+      { id: "addon-towel-rail", name: "מתקן תליית מגבות", img: IMG("addon-towel-rail") },
+      { id: "addon-soap-brush", name: "מתקני תלייה לסבון ומברשות", img: IMG("addon-soap-brush") },
+      { id: "addon-upper-shelves", name: "מדפים עליונים", img: IMG("addon-upper-shelves") },
+      { id: "addon-lower-shelf", name: "מדף תחתון", img: IMG("addon-lower-shelf") },
     ],
   },
   {
     badge: "02",
     title: "ברזים",
     items: [
-      { id: "addon-faucet-3way", name: "ברז אינטרפוט 3-דרך מהקיר, גוון גרפיט" },
-      { id: "addon-faucet-touchless", name: "ברז פתיחה ללא מגע יד" },
+      { id: "addon-faucet-3way", name: "ברז אינטרפוט 3-דרך מהקיר, גוון גרפיט", img: IMG("addon-faucet-3way") },
+      { id: "addon-faucet-touchless", name: "ברז פתיחה ללא מגע יד", img: IMG("addon-faucet-touchless") },
     ],
   },
   {
     badge: "03",
     title: "תאורה",
-    items: [{ id: "addon-led-strip", name: "תאורת פס LED" }],
+    items: [{ id: "addon-led-strip", name: "תאורת פס LED", img: IMG("addon-led-strip") }],
   },
   {
     badge: "04",
     title: "הרחבות אבן",
     items: [
-      { id: "addon-marble-wall", name: "קיר שיש איטלקי תואם לכיור" },
-      { id: "addon-marble-floor", name: "ריצוף שיש איטלקי תואם" },
-      { id: "addon-italian-marble", name: "שיש איטלקי (Calacatta, Statuario ועוד)" },
-      { id: "addon-siphon-cube", name: "בגירת סיפון עם קובייה" },
+      { id: "addon-marble-wall", name: "קיר שיש איטלקי תואם לכיור", img: IMG("addon-marble-wall") },
+      { id: "addon-marble-floor", name: "ריצוף שיש איטלקי תואם", img: IMG("addon-marble-floor") },
+      { id: "addon-siphon-cube", name: "בגירת סיפון עם קובייה", img: IMG("addon-siphon-cube") },
     ],
   },
   {
     badge: "05",
     title: "גימור",
-    items: [{ id: "addon-grout-match", name: "התאמת רובה לכל גוון בכיור" }],
+    items: [{ id: "addon-grout-match", name: "התאמת רובה לכל גוון בכיור", img: IMG("addon-grout-match") }],
   },
 ];
 
@@ -91,7 +89,7 @@ export function AddOns() {
                       <div className="aspect-[4/3] w-full overflow-hidden bg-[var(--color-cream-darker)]/40 flex items-center justify-center">
                         {hasImg ? (
                           // eslint-disable-next-line @next/next/no-img-element
-                          <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                         ) : (
                           <span className="text-[var(--color-brass)]/50 text-4xl">◆</span>
                         )}

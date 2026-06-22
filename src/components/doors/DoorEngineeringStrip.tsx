@@ -9,12 +9,17 @@ import { useState } from "react";
 
 type Sketch = { url: string; caption: string };
 
-// TODO(Avshi): upload reduced-res sketches to Cloudinary and paste secure URLs.
-// Leave a url empty ('') to hide that tile.
+// Reduced-res delivery transform (protects the fabrication IP) + clean Hebrew
+// captions carry the meaning, since the source images are intentionally label-free.
+const TX = "w_1100,q_auto,f_auto";
+function rz(url: string): string {
+  return url.replace("/image/upload/", `/image/upload/${TX}/`);
+}
+
 const SKETCHES: Sketch[] = [
-  { url: "", caption: "בנייה וחיפוי קיר — מסגרת פלדה נסתרת ועיגון מדויק" },
-  { url: "", caption: "קורת ראש עליונה ואפשרויות ידית" },
-  { url: "", caption: "חיבור שיש חלק — עיגון בלתי נראה בגובה אפס" },
+  { url: rz("https://res.cloudinary.com/dqdku88vv/image/upload/v1782104576/door_system_cross-section_wahy4m.png"), caption: "חתך מערכת הדלת — מסגרת פלדה נסתרת בין שני חיפויי שיש" },
+  { url: rz("https://res.cloudinary.com/dqdku88vv/image/upload/v1782104575/head_beam_handle_options_aeac26.png"), caption: "קורת ראש עליונה נסתרת ואפשרויות ידית" },
+  { url: rz("https://res.cloudinary.com/dqdku88vv/image/upload/v1782104575/seamless_anchor_detail_htpcjk.png"), caption: "פרט עיגון — חיבור שיש חלק בגובה אפס" },
 ];
 
 export function DoorEngineeringStrip() {

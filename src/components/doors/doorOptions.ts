@@ -46,16 +46,6 @@ export const PROJECT_TYPES: Opt[] = [
   { value: 'commercial', label: 'מסחרי' },
 ];
 
-// Door budget bands. NOTE: `value` must match the leads_budget_tier_check
-// constraint (reuses the existing allowed sink values). Only the LABELS are
-// door-appropriate. PLACEHOLDER ranges — tell me the real numbers to display.
-export const DOOR_BUDGETS: Opt[] = [
-  { value: "tier_1_8k_15k", label: "25,000 - 40,000 ₪", desc: "בסיס" },
-  { value: "tier_2_15k_25k", label: "40,000 - 60,000 ₪", desc: "פרימיום" },
-  { value: "tier_3_25k_50k", label: "60,000 - 90,000 ₪", desc: "אומנותי" },
-  { value: "tier_4_50k_plus", label: "90,000+ ₪", desc: "יצירת מופת" },
-];
-
 export function labelFor(list: Opt[], val: string): string {
   return list.find((x) => x.value === val)?.label || '—';
 }

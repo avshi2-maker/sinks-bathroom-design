@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { DoorHero } from "@/components/doors/DoorHero";
+import { DoorVillaShowcase } from "@/components/doors/DoorVillaShowcase";
 import { DoorWhy } from "@/components/doors/DoorWhy";
 import { DoorHowItWorks } from "@/components/doors/DoorHowItWorks";
 import { DoorExperience } from "@/components/doors/DoorExperience";
@@ -29,6 +30,7 @@ export default function DoorsPage() {
       <Header />
       <main dir="rtl">
         <DoorHero />
+        <DoorVillaShowcase />
         <DoorWhy />
         <DoorHowItWorks />
         <DoorExperience />

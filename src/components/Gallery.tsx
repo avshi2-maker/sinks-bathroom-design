@@ -1,4 +1,4 @@
-import { fetchGalleryFolder } from "@/lib/cloudinaryGallery";
+﻿import { fetchGalleryFolder } from "@/lib/cloudinaryGallery";
 import type { GalleryImage } from "@/lib/cloudinaryGallery";
 import { GalleryCard } from "./GalleryCard";
 import { VideoGallery } from "./VideoGallery";
@@ -9,10 +9,10 @@ import { VideoGallery } from "./VideoGallery";
  */
 export async function Gallery() {
   const [sinks, samples, concepts, sketches] = await Promise.all([
-    fetchGalleryFolder("marble-art/sinks", 50),
-    fetchGalleryFolder("marble-art/samples", 50),
-    fetchGalleryFolder("marble-art/concepts", 50),
-    fetchGalleryFolder("marble-art/sketches", 50),
+    fetchGalleryFolder("marble-art/sinks", 120),
+    fetchGalleryFolder("marble-art/samples", 120),
+    fetchGalleryFolder("marble-art/concepts", 120),
+    fetchGalleryFolder("marble-art/sketches", 120),
   ]);
 
   return (

@@ -49,7 +49,7 @@ export type GalleryImage = {
  */
 export async function fetchGalleryFolder(
   folderPath: string,
-  maxItems: number = 30
+  maxItems: number = 120
 ): Promise<GalleryImage[]> {
   if (!API_KEY || !API_SECRET) {
     console.warn(

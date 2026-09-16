@@ -163,7 +163,7 @@ export default function RootLayout({
         },
       },
     ],
-    telephone: "+972-50-523-1042", email: "avshi2@gmail.com", sameAs: ["https://www.instagram.com/marble_art_sinks"],
+    telephone: "+972-50-523-1042", email: "avshi2@gmail.com", sameAs: ["https://www.instagram.com/marble_art_sinks", "https://www.facebook.com/profile.php?id=61590495129435"],
   };
 
   return (

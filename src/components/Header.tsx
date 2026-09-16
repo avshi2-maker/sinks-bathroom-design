@@ -1,3 +1,5 @@
+// Header.tsx (src/components/Header.tsx) · updated 16.09.2026 (Asia/Jerusalem)
+// ARVO branding scrubbed -> Marble Art text wordmark (no logo asset dependency).
 import Link from "next/link";
 import { LiveClock } from "./LiveClock";
 
@@ -11,9 +13,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-[var(--color-cream)]/85 backdrop-blur-md border-b border-[var(--color-cream-darker)]">
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center shrink-0" aria-label="ARVO — דף הבית">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/arvo-logo.svg" alt="ARVO — בניה תשתיות פיתוח" width={240} height={220} className="h-14 md:h-20 w-auto" />
+        <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="Marble Art — דף הבית">
+          <span className="inline-block w-3 h-3 bg-[var(--color-brass-dark)] rotate-45" />
+          <span className="text-2xl md:text-3xl font-black tracking-wide text-[var(--color-charcoal)]">Marble Art</span>
+          <span className="hidden sm:inline text-sm text-[var(--color-charcoal)]/60">מרבל ארט</span>
         </Link>
         <nav className="flex items-center gap-3 md:gap-6">
           {NAV.map((n) => (

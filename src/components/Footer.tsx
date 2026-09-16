@@ -1,4 +1,6 @@
-﻿"use client";
+"use client";
+// Footer.tsx (src/components/Footer.tsx) · updated 16.09.2026 (Asia/Jerusalem)
+// ARVO branding scrubbed -> Marble Art text wordmark + copyright.
 const WA_MESSAGE = "שלום, ראיתי את האתר של מרבל ארט ומעוניין/ת בכיור שיש.";
 function trackEvent(eventName: string, params: Record<string, string | number>) {
   if (typeof window !== "undefined") {
@@ -17,16 +19,17 @@ export function Footer() {
   return (
     <footer className="bg-[var(--color-charcoal)] text-[var(--color-cream)]/70 py-14">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <div className="flex justify-center mb-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/arvo-logo-gold.svg" alt="ARVO — בניה תשתיות פיתוח" width={200} height={142} className="h-16 w-auto" />
+        <div className="flex justify-center items-center gap-2 mb-4">
+          <span className="inline-block w-3 h-3 bg-[var(--color-brass)] rotate-45" />
+          <span className="text-2xl font-black tracking-wide text-[var(--color-cream)]">Marble Art</span>
+          <span className="text-sm text-[var(--color-cream)]/60">מרבל ארט</span>
         </div>
         <p className="text-sm mb-8">כיורי שיש וגרניט פורצלן בעבודת יד</p>
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm mb-10">
           <a href={avshiHref} target="_blank" rel="noopener noreferrer" onClick={onAvshiClick} className={linkCls}>וואטסאפ - אבשי 050-5231042</a>
           <a href="#lead-form" onClick={onFormClick} className={linkCls}>מלאו טופס</a>
         </div>
-        <p className="text-xs text-[var(--color-cream)]/40">© 2026 ARVO. כל הזכויות שמורות.</p>
+        <p className="text-xs text-[var(--color-cream)]/40">© 2026 Marble Art · מרבל ארט. כל הזכויות שמורות.</p>
       </div>
     </footer>
   );

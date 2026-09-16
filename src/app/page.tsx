@@ -5,6 +5,7 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { Gallery } from "@/components/Gallery";
 import { ForDesigners } from "@/components/ForDesigners";
 import { AddOns } from "@/components/AddOns";
+import { FAQ } from "@/components/FAQ";
 import { LeadForm } from "@/components/LeadForm";
 import { Footer } from "@/components/Footer";
 import { SelectionProvider } from "@/context/SelectionContext";
@@ -24,6 +25,7 @@ export default function Home() {
         <Gallery />
         <ForDesigners />
         <AddOns />
+        <FAQ />
         <section id="lead-form" className="py-20 md:py-32 bg-[var(--color-cream-darker)]">
           <div className="max-w-3xl mx-auto px-6">
             <div className="text-center mb-12">

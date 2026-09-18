@@ -72,9 +72,6 @@ export async function submitLead(formData: FormData): Promise<LeadResult> {
     const budget_tier = (formData.get("budget_tier") as string) || null;
     const city_he = ((formData.get("city_he") as string) || "").trim() || null;
     const notes_he = ((formData.get("notes_he") as string) || "").trim() || null;
-    // Optional: source page tag. Defaults to "/" so the sinks form is unchanged;
-    // the door form sends "/doors" so door leads are filterable in the CRM.
-    const landing_page = ((formData.get("landing_page") as string) || "/").trim() || "/";
     const data = {
       full_name,
       phone,
@@ -87,7 +84,7 @@ export async function submitLead(formData: FormData): Promise<LeadResult> {
       status: "new",
       utm_source: "direct",
       utm_medium: "landing_v1",
-      landing_page,
+      landing_page: "/",
     };
     console.log("[submitLead] Attempting insert with:", JSON.stringify(data, null, 2));
     const { error } = await supabase.from("leads").insert(data);

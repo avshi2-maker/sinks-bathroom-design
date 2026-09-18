@@ -1,4 +1,4 @@
-// Header.tsx (src/components/Header.tsx) · updated 16.09.2026 (Asia/Jerusalem)
+// Header.tsx (src/components/Header.tsx) · updated 18.09.2026 (Asia/Jerusalem)
 // ARVO branding scrubbed -> Marble Art text wordmark (no logo asset dependency).
 import Link from "next/link";
 import { LiveClock } from "./LiveClock";
@@ -7,6 +7,7 @@ const NAV = [
   { href: "/", label: "כיורים" },
   { href: "/doors", label: "דלתות" },
   { href: "/marble-sinks-for-designers", label: "למעצבים" },
+  { href: "/guides", label: "מדריכים" },
 ];
 
 export function Header() {

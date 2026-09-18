@@ -1,5 +1,5 @@
 // page.tsx (src/app/videos/page.tsx) · updated 18.09.2026 (Asia/Jerusalem)
-// /videos — featured video + grid, VideoObject schema, links to the YouTube channel.
+// /videos — vertical Shorts embeds + VideoObject schema + links to the YouTube channel.
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -36,33 +36,34 @@ export default function VideosPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />
       <Header />
       <main dir="rtl" className="bg-[var(--color-cream)] min-h-[60vh]">
-        <div className="max-w-4xl mx-auto px-6 py-16 md:py-24">
+        <div className="max-w-5xl mx-auto px-6 py-16 md:py-24">
           <div className="text-center mb-12 md:mb-14">
             <p className="text-[var(--color-brass-dark)] text-xs font-medium tracking-[0.3em] uppercase mb-4">Marble Art</p>
             <h1 className="text-[var(--color-charcoal)] text-4xl md:text-5xl font-black leading-tight mb-4">סרטונים</h1>
             <p className="text-[var(--color-charcoal)]/70 text-lg max-w-2xl mx-auto">צפו איך נוצר כיור שיש אמנותי — מגוש אבן טבעי, דרך חריטה וגילוף, ועד ההתקנה בבית.</p>
           </div>
 
-          <div className="rounded-2xl overflow-hidden border border-[var(--color-cream-darker)] shadow-sm bg-black">
-            <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
-              <iframe className="absolute inset-0 w-full h-full" src={`https://www.youtube.com/embed/${featured.id}`} title={featured.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+          <div className="max-w-[380px] mx-auto">
+            <div className="rounded-2xl overflow-hidden border border-[var(--color-cream-darker)] shadow-sm bg-black">
+              <div className="relative w-full" style={{ paddingTop: "177.78%" }}>
+                <iframe className="absolute inset-0 w-full h-full" src={`https://www.youtube.com/embed/${featured.id}`} title={featured.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+              </div>
             </div>
+            <h2 className="text-[var(--color-charcoal)] text-xl font-black mt-4 mb-1 leading-tight text-center">{featured.title}</h2>
+            <p className="text-[var(--color-charcoal)]/70 text-base leading-relaxed text-center">{featured.desc}</p>
           </div>
-          <h2 className="text-[var(--color-charcoal)] text-xl md:text-2xl font-black mt-5 mb-1 leading-tight">{featured.title}</h2>
-          <p className="text-[var(--color-charcoal)]/70 text-base leading-relaxed">{featured.desc}</p>
 
           {rest.length > 0 && (
-            <div className="grid sm:grid-cols-2 gap-6 mt-14">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 md:gap-6 mt-16 justify-items-center">
               {rest.map((v) => (
-                <Link key={v.id} href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" className="group block bg-[#fff] border border-[var(--color-cream-darker)] rounded-2xl overflow-hidden hover:border-[var(--color-brass)] transition-colors">
-                  <div className="relative w-full bg-black" style={{ paddingTop: "56.25%" }}>
-                    <img className="absolute inset-0 w-full h-full object-cover" src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} loading="lazy" />
+                <div key={v.id} className="w-full max-w-[280px]">
+                  <div className="rounded-2xl overflow-hidden border border-[var(--color-cream-darker)] shadow-sm bg-black">
+                    <div className="relative w-full" style={{ paddingTop: "177.78%" }}>
+                      <iframe className="absolute inset-0 w-full h-full" src={`https://www.youtube.com/embed/${v.id}`} title={v.title} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                    </div>
                   </div>
-                  <div className="p-5">
-                    <h3 className="text-[var(--color-charcoal)] text-lg font-bold leading-tight mb-1">{v.title}</h3>
-                    <p className="text-[var(--color-charcoal)]/70 text-sm leading-relaxed">{v.desc}</p>
-                  </div>
-                </Link>
+                  <h3 className="text-[var(--color-charcoal)] text-sm font-bold leading-tight mt-2 text-center">{v.title}</h3>
+                </div>
               ))}
             </div>
           )}

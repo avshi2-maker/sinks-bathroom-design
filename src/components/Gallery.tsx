@@ -1,7 +1,7 @@
 ﻿import { fetchGalleryFolder } from "@/lib/cloudinaryGallery";
 import type { GalleryImage } from "@/lib/cloudinaryGallery";
 import { GalleryCard } from "./GalleryCard";
-import { VideoGallery } from "./VideoGallery";
+import { YouTubeStrip } from "./YouTubeStrip";
 
 /**
  * Marble Art Gallery — 4 themed sections. VideoGallery renders right
@@ -29,7 +29,7 @@ export async function Gallery() {
         emptyState="גלריית הכיורים נפתחת בקרוב — נוסיף תמונות חדשות בכל שבוע."
       />
 
-      <VideoGallery />
+      <YouTubeStrip />
 
       <GallerySection
         id="samples-gallery"

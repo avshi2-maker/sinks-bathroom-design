@@ -36,6 +36,13 @@ export default function GuidesIndex() {
             <p className="text-[var(--color-charcoal)]/70 text-lg max-w-2xl mx-auto">כל מה שצריך לדעת על כיורי שיש, פורצלן ואבן טבעית — כדי לבחור נכון וליהנות מהכיור לשנים.</p>
           </div>
 
+          <Link href="/guides/stone-guide" className="group block bg-[var(--color-charcoal)] text-[var(--color-cream)] rounded-2xl p-7 md:p-8 mb-8 hover:bg-[var(--color-charcoal)]/90 transition-colors">
+            <span className="inline-block text-xs font-bold text-[var(--color-brass)] mb-3">התחילו כאן</span>
+            <h2 className="text-2xl md:text-3xl font-black mb-2 leading-tight">מדריך האבן — המדריך המלא</h2>
+            <p className="text-[var(--color-cream)]/70 text-base leading-relaxed mb-4">כל הנושאים במקום אחד: בחירת אבן, שיש מול פורצלן, קלקטה, תחזוקה ותהליך הייצור בעבודת יד.</p>
+            <span className="text-[var(--color-brass)] font-bold group-hover:underline">למדריך המלא ←</span>
+          </Link>
+
           <div className="grid sm:grid-cols-2 gap-6 md:gap-8">
             {GUIDES.map((g) => (
               <Link key={g.slug} href={`/guides/${g.slug}`} className="group block bg-[#fff] border border-[var(--color-cream-darker)] rounded-2xl p-7 hover:border-[var(--color-brass)] transition-colors">

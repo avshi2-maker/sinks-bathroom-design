@@ -15,6 +15,7 @@ export type GuideData = {
   intro: string;
   sections: GuideSection[];
   faq: GuideFaq[];
+  videoId?: string; // optional YouTube video ID embedded under the intro
 };
 
 export function GuideArticle({ data }: { data: GuideData }) {
@@ -37,10 +38,25 @@ export function GuideArticle({ data }: { data: GuideData }) {
     mainEntity: data.faq.map((i) => ({ "@type": "Question", name: i.q, acceptedAnswer: { "@type": "Answer", text: i.a } })),
   };
 
+  const videoSchema = data.videoId
+    ? {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        name: data.h1,
+        description: data.intro.slice(0, 200),
+        uploadDate: "2026-09-18",
+        thumbnailUrl: [`https://i.ytimg.com/vi/${data.videoId}/hqdefault.jpg`],
+        embedUrl: `https://www.youtube.com/embed/${data.videoId}`,
+        contentUrl: `https://www.youtube.com/watch?v=${data.videoId}`,
+        publisher: { "@type": "Organization", name: "Marble Art Sinks", url: SITE_URL },
+      }
+    : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      {videoSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />}
       <Header />
       <main dir="rtl" className="bg-[var(--color-cream)]">
         <article className="max-w-3xl mx-auto px-6 py-16 md:py-24">
@@ -49,6 +65,14 @@ export function GuideArticle({ data }: { data: GuideData }) {
           </nav>
           <h1 className="text-[var(--color-charcoal)] text-4xl md:text-5xl font-black leading-tight mb-5">{data.h1}</h1>
           <p className="text-[var(--color-charcoal)]/70 text-lg md:text-xl leading-relaxed mb-12">{data.intro}</p>
+
+          {data.videoId && (
+            <div className="rounded-2xl overflow-hidden border border-[var(--color-cream-darker)] shadow-sm bg-black mb-12">
+              <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+                <iframe className="absolute inset-0 w-full h-full" src={`https://www.youtube.com/embed/${data.videoId}`} title={data.h1} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+              </div>
+            </div>
+          )}
 
           {data.sections.map((s, i) => (
             <section key={i} className="mb-10">

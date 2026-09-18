@@ -1,8 +1,9 @@
 // GuideArticle.tsx (src/app/guides/GuideArticle.tsx) · updated 18.09.2026 (Asia/Jerusalem)
-// Shared renderer for /guides article pages: Header + Article/FAQ schema + sections + FAQ + CTA + Footer.
+// Shared renderer for /guides article pages: Header + Article/FAQ schema + sections + FAQ + related guides + CTA + Footer.
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { GUIDES } from "./guides";
 
 const SITE_URL = "https://www.marble-art.co.il";
 
@@ -18,6 +19,7 @@ export type GuideData = {
 
 export function GuideArticle({ data }: { data: GuideData }) {
   const PAGE_URL = `${SITE_URL}/guides/${data.slug}`;
+  const related = GUIDES.filter((g) => g.slug !== data.slug).slice(0, 3);
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -68,6 +70,19 @@ export function GuideArticle({ data }: { data: GuideData }) {
                   </summary>
                   <p className="text-[var(--color-charcoal)]/70 text-base leading-relaxed pb-5 text-right">{item.a}</p>
                 </details>
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-12">
+            <h2 className="text-[var(--color-charcoal)] text-2xl md:text-3xl font-black mb-6 leading-tight">מדריכים נוספים</h2>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {related.map((g) => (
+                <Link key={g.slug} href={`/guides/${g.slug}`} className="block bg-[var(--color-cream-darker)]/40 border border-[var(--color-cream-darker)] rounded-2xl p-5 hover:bg-[var(--color-cream-darker)]/60 transition-colors">
+                  <span className="inline-block text-xs text-[var(--color-brass-dark)] font-bold mb-2">{g.tag}</span>
+                  <h3 className="text-[var(--color-charcoal)] text-lg font-bold leading-tight mb-2">{g.title}</h3>
+                  <span className="text-[var(--color-brass-dark)] text-sm font-bold">קראו את המדריך ←</span>
+                </Link>
               ))}
             </div>
           </section>

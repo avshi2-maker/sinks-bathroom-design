@@ -1,4 +1,4 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 
 const SITE_URL = "https://www.marble-art.co.il";
 
@@ -17,6 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/guides/porcelain-sinks`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     // Future pages can be added here as the site grows
     // e.g. /gallery, /process, /about, /contact

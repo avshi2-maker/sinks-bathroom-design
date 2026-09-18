@@ -1,5 +1,6 @@
-// FAQ.tsx (src/components/FAQ.tsx) · updated 16.09.2026 (Asia/Jerusalem)
+// FAQ.tsx (src/components/FAQ.tsx) · updated 18.09.2026 (Asia/Jerusalem)
 // GEO/AI-optimized FAQ section + FAQPage JSON-LD schema (source of truth = FAQ_ITEMS).
+import Link from "next/link";
 
 export const FAQ_ITEMS: { q: string; a: string }[] = [
   {
@@ -66,6 +67,12 @@ export function FAQ() {
               <p className="text-[var(--color-charcoal)]/70 text-base leading-relaxed pb-5 text-right">{item.a}</p>
             </details>
           ))}
+        </div>
+
+        <div className="text-center mt-10">
+          <Link href="/guides/porcelain-sinks" className="text-[var(--color-brass-dark)] font-bold hover:underline">
+            רוצים להעמיק? קראו את המדריך המלא לכיורי פורצלן →
+          </Link>
         </div>
       </div>
     </section>

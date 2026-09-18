@@ -8,6 +8,7 @@ const NAV = [
   { href: "/doors", label: "דלתות" },
   { href: "/marble-sinks-for-designers", label: "למעצבים" },
   { href: "/guides", label: "מדריכים" },
+  { href: "/videos", label: "סרטונים" },
 ];
 
 export function Header() {

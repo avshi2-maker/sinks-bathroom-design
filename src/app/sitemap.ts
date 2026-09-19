@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { CITIES } from "./marble-sinks/cities";
 
 const SITE_URL = "https://www.marble-art.co.il";
 
@@ -17,6 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.95,
+    },
+    {
+      url: `${SITE_URL}/marble-sink-prices`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${SITE_URL}/marble-sinks-for-designers`,
@@ -86,5 +93,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // Future pages can be added here as the site grows
     // e.g. /gallery, /process, /about, /contact
+  ...CITIES.map((c) => ({
+      url: `${SITE_URL}/marble-sinks/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
   ];
 }

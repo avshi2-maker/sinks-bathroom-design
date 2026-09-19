@@ -131,7 +131,7 @@
   <header class="top">
     <div class="brandline"><span class="diamond"></span><span class="disp" style="font-weight:900;font-size:20px;letter-spacing:1px">Marble Art</span></div>
     <h1>לוח 8 הסרטונים</h1>
-    <p class="sub">סרטון אחד בשבוע. לכל שבוע: מצלמים → מעלים ל‑YouTube → משתפים אותו קליפ ל‑Instagram Reels ול‑Facebook. סמנו כל פלטפורמה כשפרסמתם.</p>
+    <p class="sub">סרטון אחד בשבוע. לכל שבוע: מצלמים → מעלים ל‑YouTube → משתפים אותו קליפ ל‑Instagram Reels, ל‑Facebook ול‑Pinterest. סמנו כל פלטפורמה כשפרסמתם.</p>
     <div class="tip">
       <b>לפרסום אוטומטי:</b> ב‑<b>Meta Business Suite</b> (חינם) יש לוח שמתזמן ומפרסם לבד את הפוסט ל‑Facebook ולריל ב‑Instagram בתאריך שתבחרו. ב‑YouTube — קובעים תאריך פרסום ישירות בהעלאה. הלוח הזה מרכז את כל הטקסטים והמעקב במקום אחד.
       <a href="https://business.facebook.com/latest/planner" target="_blank" rel="noopener">פותחים את Meta Planner →</a>
@@ -155,7 +155,7 @@
 (function(){
   "use strict";
   var KEY="ma_shorts_planner_v1";
-  var PLATFORMS=[{id:"yt",label:"YouTube"},{id:"ig",label:"Instagram"},{id:"fb",label:"Facebook"}];
+  var PLATFORMS=[{id:"yt",label:"YouTube"},{id:"ig",label:"Instagram"},{id:"fb",label:"Facebook"},{id:"pi",label:"Pinterest"}];
   var posts=[];
   try{ posts=JSON.parse(document.getElementById("posts-data").textContent); }catch(e){ posts=[]; }
 
@@ -174,7 +174,7 @@
   var base=firstSunday();
   posts.forEach(function(p,i){
     if(!state.dates[p.wk]){ var d=new Date(base); d.setDate(base.getDate()+i*7); state.dates[p.wk]=iso(d); }
-    if(!state.done[p.wk]) state.done[p.wk]={yt:false,ig:false,fb:false};
+    if(!state.done[p.wk]) state.done[p.wk]={yt:false,ig:false,fb:false,pi:false};
   });
   save(state);
 
@@ -196,7 +196,7 @@
   }
 
   function refreshProgress(){
-    var n=0; posts.forEach(function(p){ var d=state.done[p.wk]; if(d&&d.yt&&d.ig&&d.fb) n++; });
+    var n=0; posts.forEach(function(p){ var d=state.done[p.wk]; if(d&&d.yt&&d.ig&&d.fb&&d.pi) n++; });
     document.getElementById("doneCount").textContent=n;
     document.getElementById("barFill").style.width=(n/8*100)+"%";
   }
@@ -235,7 +235,7 @@
       chip.innerHTML='<span class="dot"></span>'+pf.label;
       function paint(){ var on=!!(state.done[p.wk]&&state.done[p.wk][pf.id]);
         chip.classList.toggle("on",on); chip.querySelector(".dot").textContent=on?"✓":"";
-        card.classList.toggle("done", state.done[p.wk].yt&&state.done[p.wk].ig&&state.done[p.wk].fb); }
+        card.classList.toggle("done", state.done[p.wk].yt&&state.done[p.wk].ig&&state.done[p.wk].fb&&state.done[p.wk].pi); }
       chip.addEventListener("click",function(){ state.done[p.wk][pf.id]=!state.done[p.wk][pf.id];
         save(state); paint(); refreshProgress(); });
       paint(); plat.appendChild(chip);

@@ -30,6 +30,15 @@ Parked upgrade ideas for the marketing site (marble-art.co.il) + YouTube channel
 
 ---
 
+## 5. Meta Conversions API (server-side pixel companion) — effort: medium
+**Idea:** send Lead/PageView events to Meta server-side (Conversions API) alongside the browser Meta Pixel, so events still land when ad-blockers / iOS block the client-side pixel.
+**Benefit:** Meta reports ~18% lower cost-per-result on average when CAPI runs with the Pixel; more complete Lead data → better ad optimization and lookalikes.
+**How:** in `submitLead` (server action), after a successful insert, POST the Lead event to `graph.facebook.com/<PIXEL_ID>/events` with a SHA-256-hashed phone + event data; add `META_CAPI_TOKEN` to Vercel env and reuse `NEXT_PUBLIC_META_PIXEL_ID`. Dedupe against the browser pixel with a shared `event_id`.
+**Trigger to build:** only once actively spending on Meta ads — no ads, no benefit. Until then the browser Pixel already builds the audience.
+**Note:** needs a CAPI access token from Events Manager → Settings → Conversions API; the phone MUST be SHA-256 hashed before sending (PII rule).
+
+---
+
 ## Done (shipped 18.09.2026)
 - ✅ 7 guide pages + master pillar page (/guides/stone-guide)
 - ✅ Related-guides cross-links on every guide

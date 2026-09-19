@@ -1,4 +1,5 @@
 "use server";
+// actions.ts (src/app/actions.ts) · updated 19.09.2026 16:55 (Asia/Jerusalem)
 
 import { supabase } from "@/lib/supabase";
 import { Resend } from "resend";
@@ -26,6 +27,20 @@ async function sendLeadAlertEmail(opts: {
       return;
     }
     const resend = new Resend(apiKey);
+    const waPhone = (opts.phone || "").replace(/\D/g, "").replace(/^0/, "972");
+    const waMsg = `שלום ${opts.fullName}, כאן Marble Art — קיבלנו את הפנייה שלכם לכיור שיש ונשמח להכין לכם הדמיה. מתי נוח לחזור אליכם?`;
+    const waUrl = `https://wa.me/${waPhone}?text=${encodeURIComponent(waMsg)}`;
+    const cell = 'style="padding:4px 0;color:#8A6F44;font-weight:700"';
+    const detailRows = [
+      `<tr><td ${cell}>שם</td><td style="padding:4px 0">${opts.fullName}</td></tr>`,
+      `<tr><td ${cell}>טלפון</td><td style="padding:4px 0">${opts.phone}</td></tr>`,
+      opts.city ? `<tr><td ${cell}>עיר</td><td style="padding:4px 0">${opts.city}</td></tr>` : "",
+      opts.projectType ? `<tr><td ${cell}>סוג פרויקט</td><td style="padding:4px 0">${opts.projectType}</td></tr>` : "",
+      opts.budgetTier ? `<tr><td ${cell}>תקציב</td><td style="padding:4px 0">${opts.budgetTier}</td></tr>` : "",
+    ].filter((r) => r !== "").join("");
+    const notesBlock = opts.notes ? `<p style="background:#F5F1EA;padding:12px;border-radius:8px;white-space:pre-wrap;margin:14px 0">${opts.notes}</p>` : "";
+    const filesBlock = opts.imageCount && opts.imageCount > 0 ? `<p style="color:#6b6155;font-size:13px">📎 ${opts.imageCount} קבצים מצורפים — בכרטיס הליד ב-CRM</p>` : "";
+    const html = `<div dir="rtl" style="font-family:Arial,Helvetica,sans-serif;max-width:520px;margin:0 auto;color:#0F0F0F"><h2 style="margin:0 0 12px">🔔 ליד חדש: ${opts.fullName}</h2><table style="width:100%;border-collapse:collapse;font-size:15px">${detailRows}</table>${notesBlock}${filesBlock}<div style="margin:18px 0"><a href="${waUrl}" style="display:inline-block;background:#25D366;color:#ffffff;text-decoration:none;padding:14px 28px;border-radius:999px;font-weight:700;font-size:16px">📱 השב ללקוח ב-WhatsApp</a></div><p style="color:#6b6155;font-size:13px">לחיצה תפתח שיחת WhatsApp עם הלקוח והודעה מוכנה מראש. מהירות תגובה = יותר סגירות.</p></div>`;
     const lines = [
       `שם: ${opts.fullName}`,
       `טלפון: ${opts.phone}`,
@@ -34,6 +49,7 @@ async function sendLeadAlertEmail(opts: {
       opts.budgetTier ? `תקציב: ${opts.budgetTier}` : "",
       opts.notes ? `\nפרטים:\n${opts.notes}` : "",
       opts.imageCount && opts.imageCount > 0 ? `\n📎 ${opts.imageCount} קבצים מצורפים — זמינים בכרטיס הליד ב-CRM` : "",
+      `\n📱 השב ללקוח ב-WhatsApp: ${waUrl}`,
       `\nפתח את ה-CRM כדי לעבד את הפנייה.`,
     ].filter((l) => l !== "");
     await resend.emails.send({
@@ -41,6 +57,7 @@ async function sendLeadAlertEmail(opts: {
       to: [to],
       subject: `🔔 ליד חדש מהאתר: ${opts.fullName}`,
       text: lines.join("\n"),
+      html,
     });
     console.log("[leadAlert] alert email sent");
   } catch (e) {

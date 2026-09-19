@@ -1,4 +1,5 @@
 "use client";
+// LeadForm.tsx (src/components/LeadForm.tsx) · updated 19.09.2026 07:06 (Asia/Jerusalem)
 
 import { useState } from "react";
 import { submitLead } from "@/app/actions";
@@ -61,7 +62,7 @@ function labelFor(list: { value: string; label: string }[], val: string): string
   return list.find((x) => x.value === val)?.label || "—";
 }
 
-export function LeadForm() {
+export function LeadForm({ landingPage = "/" }: { landingPage?: string }) {
   const { items: picks, remove: removePick, clear: clearPicks, count: pickCount } = useSelection();
   const [pending, setPending] = useState(false);
   const [done, setDone] = useState(false);
@@ -132,6 +133,7 @@ export function LeadForm() {
     const combinedNotes = [userNotes, structured].filter((s) => s !== "").join("\n");
     formData.set("notes_he", combinedNotes);
     formData.set("inspiration_urls_json", JSON.stringify([...files.map((f) => f.url), ...picks.map((p) => p.thumbnailUrl)]));
+    formData.set("landing_page", landingPage);
     const result = await submitLead(formData);
     setPending(false);
     if (result.success) {

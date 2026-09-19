@@ -1,4 +1,4 @@
-// GuideArticle.tsx (src/app/guides/GuideArticle.tsx) · updated 18.09.2026 (Asia/Jerusalem)
+// GuideArticle.tsx (src/app/guides/GuideArticle.tsx) · updated 19.09.2026 08:10 (Asia/Jerusalem)
 // Shared renderer for /guides article pages: Header + Article/FAQ schema + sections + FAQ + related guides + CTA + Footer.
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -16,6 +16,7 @@ export type GuideData = {
   sections: GuideSection[];
   faq: GuideFaq[];
   videoId?: string; // optional YouTube video ID embedded under the intro
+  howTo?: { name: string; steps: { name: string; text: string }[] };
 };
 
 export function GuideArticle({ data }: { data: GuideData }) {
@@ -52,11 +53,21 @@ export function GuideArticle({ data }: { data: GuideData }) {
       }
     : null;
 
+  const howToSchema = data.howTo
+    ? {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: data.howTo.name,
+        step: data.howTo.steps.map((s, i) => ({ "@type": "HowToStep", position: i + 1, name: s.name, text: s.text })),
+      }
+    : null;
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       {videoSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }} />}
+      {howToSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}
       <Header />
       <main dir="rtl" className="bg-[var(--color-cream)]">
         <article className="max-w-3xl mx-auto px-6 py-16 md:py-24">

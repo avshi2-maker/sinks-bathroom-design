@@ -78,6 +78,27 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </div>
         </section>
 
+        {p.image2 && p.optionA && p.optionB && (
+          <section className="py-16 md:py-20 bg-[var(--color-cream)]">
+            <div className="max-w-5xl mx-auto px-6">
+              <h2 className="text-[var(--color-charcoal)] text-2xl md:text-3xl font-black mb-3 text-center">שתי אפשרויות — אותו משטח</h2>
+              <p className="text-[var(--color-charcoal)]/60 text-center mb-10 max-w-2xl mx-auto">הדמינו את שני הפתרונות על אותו חלל בדיוק, כדי שההחלטה תתקבל מתוך ראייה ולא מתוך תיאור.</p>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-[var(--color-cream-darker)] rounded-2xl overflow-hidden border border-[var(--color-cream-darker)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.image} alt="אפשרות 1" className="w-full aspect-[16/10] object-cover" />
+                  <p className="text-[var(--color-charcoal)]/75 leading-relaxed p-6">{p.optionA}</p>
+                </div>
+                <div className="bg-[var(--color-cream-darker)] rounded-2xl overflow-hidden border border-[var(--color-cream-darker)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.image2} alt="אפשרות 2" className="w-full aspect-[16/10] object-cover" />
+                  <p className="text-[var(--color-charcoal)]/75 leading-relaxed p-6">{p.optionB}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
         <section className="py-16 md:py-20 bg-[var(--color-cream)]">
           <div className="max-w-4xl mx-auto px-6 grid md:grid-cols-3 gap-6">
             {blocks.map((b) => (

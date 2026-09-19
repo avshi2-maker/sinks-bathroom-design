@@ -1,11 +1,11 @@
 // projects.ts (src/app/projects/projects.ts) · updated 19.09.2026 (Asia/Jerusalem)
 // Case-study registry for /projects/[slug]. Add a project = one object here; page + sitemap auto-generate.
-// image: a full URL (Cloudinary or /og-image.jpg placeholder). Swap the seeds' images for real Cloudinary URLs.
+// image / image2: full URL or a /project-images/<file>.jpg path served from /public.
 
 export type Project = {
   slug: string;
   title: string;
-  area: string;       // city / region served
+  area: string;
   material: string;
   size: string;
   image: string;
@@ -14,9 +14,28 @@ export type Project = {
   process: string;
   result: string;
   tags: string[];
+  image2?: string;    // optional second visual (e.g. a design option)
+  optionA?: string;   // optional: when a project compares two options
+  optionB?: string;
 };
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "calacatta-two-options",
+    title: "כיור שיש Calacatta לחלל ציבורי — שתי אפשרויות עיצוב",
+    area: "פרויקט מסחרי",
+    material: "שיש Calacatta איטלקי",
+    size: "משטח רחב · 4 עמדות",
+    image: "/project-images/calacatta-long-trough.jpg",
+    image2: "/project-images/calacatta-four-basins.jpg",
+    summary: "פרויקט אמיתי בתהליך הצעת מחיר: משטח שיש Calacatta רחב לחדר רחצה ציבורי, עם שתי גישות עיצוב על אותו לוח, רוחב וחלל — שהאדריכל ומנהל הפרויקט בוחרים ביניהן.",
+    challenge: "אותו משטח, שתי דרכים לחשוב עליו: קו רציף ונקי מול הפרדה בין משתמשים. ההחלטה משפיעה על חוויית השימוש, על התחזוקה ועל המראה — וצריכה להתקבל לפני חיתוך האבן.",
+    process: "עיצבנו והדמינו את שתי האפשרויות על אותו משטח בדיוק, כדי לאפשר השוואה ראש-בראש: זרימת הוורידים, חלוקת המים, נוחות השימוש והתחזוקה — הכול לפני שנחתכת אבן אחת.",
+    result: "הפרויקט נמצא בשלב הצעת מחיר. שתי ההדמיות מאפשרות למזמין להחליט בביטחון — לראות את התוצאה משני הכיוונים לפני ההזמנה.",
+    optionA: "אפשרות 1 — שוקת אחת ארוכה עם ניקוז יחיד: קו רציף ונקי, זרימת ורידים אחידה לכל האורך, מראה מינימליסטי ומרשים.",
+    optionB: "אפשרות 2 — ארבעה אגנים מרובעים נפרדים על אותו בסיס: הפרדה ברורה בין העמדות, מתאים לשימוש מרובה-משתמשים ולתחזוקה נוחה.",
+    tags: ["שיש קלקטה", "חלל ציבורי", "הדמיה", "בהזמנה אישית"],
+  },
   {
     slug: "porcelain-trough-1425",
     title: "כיור שוקת פורצלן תלוי — 1425 מ\"מ בהתאמה אישית",
@@ -29,19 +48,6 @@ export const PROJECTS: Project[] = [
     process: "בחרנו לוח פורצלן בגוון ובמרקם שהתאימו לחלל, חתכנו אותו למידה המדויקת ועיצבנו אגן שוקת ארוך עם שיפוע ניקוז מחושב. הגימור לוטש בעבודת יד והאיטום בוצע לפני ההתקנה.",
     result: "כיור תלוי נקי בקו אחיד שמנצל את מלוא רוחב הקיר, נותן נוכחות עיצובית חזקה לחדר הרחצה ומשאיר את הרצפה פנויה — מראה מרחף ומינימליסטי.",
     tags: ["כיור פורצלן", "כיור תלוי", "בהזמנה אישית", "שיפוץ אמבטיה"],
-  },
-  {
-    slug: "calacatta-basin",
-    title: "אגן רחצה משיש קלקטה — עיצוב אמנותי",
-    area: "השרון והמרכז",
-    material: "שיש Calacatta איטלקי",
-    size: "אגן יחיד, מידה מותאמת",
-    image: "/og-image.jpg",
-    summary: "אגן רחצה מגולף מלוח שיש Calacatta איטלקי, שנבחר לפי זרימת הוורידים כדי להפוך את הכיור לפריט מרכזי בחלל.",
-    challenge: "לשמור על רציפות הוורידים הטבעיים לאורך האגן, כך שהדוגמה תיראה כיצירה אחת ולא כחיבור מקרי של חלקים.",
-    process: "בחרנו את הלוח לפי הוורידים והגוון, תכננו את חיתוך האגן כך שהדוגמה תזרום בהרמוניה, וגילפנו את האגן בעבודת יד עדינה. הכיור לוטש לגימור משיי ואוטם להגנה מפני כתמים.",
-    result: "אגן רחצה שנראה כפסל — כל וריד ממשיך בזרימה טבעית, וכל כיור יוצא אחד ויחיד שאי אפשר לשכפל.",
-    tags: ["שיש קלקטה", "אגן רחצה", "עבודת יד", "עיצוב יוקרה"],
   },
 ];
 

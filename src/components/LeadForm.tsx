@@ -150,6 +150,7 @@ export function LeadForm({ landingPage = "/" }: { landingPage?: string }) {
         picks: picks.map((p) => ({ name: p.name, section: p.section })),
       });
       trackEvent("lead_submitted", { picks: picks.length, files: files.length });
+      if (typeof window !== "undefined") { const w = window as unknown as { fbq?: (...a: unknown[]) => void }; if (typeof w.fbq === "function") w.fbq("track", "Lead"); }
       clearPicks();
       setDone(true);
     } else {

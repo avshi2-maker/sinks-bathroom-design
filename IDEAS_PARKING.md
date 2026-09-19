@@ -21,6 +21,15 @@ Parked upgrade ideas for the marketing site (marble-art.co.il) + YouTube channel
 
 ---
 
+## 4. Content Studio Metrics (מדדים) tab → real lead count — effort: medium
+**Idea:** wire Content Studio's מדדים tab to read the real `leads` table (marble Supabase), filtered by `landing_page`, instead of the manual localStorage log.
+**Benefit:** true post→lead conversion, automatic, no hand-typing.
+**How:** add the marble Supabase **service-role** key to content-studio env (Vercel, server-only) → build a `/api/leads-stats` route that aggregates lead counts by date/`landing_page` server-side (bypasses RLS) → rewire the metrics page to fetch it.
+**Trigger to build:** only once you actually need conversion numbers on the Studio side (e.g. running paid ads). Until then the CRM + Gmail + Meta already show the leads, so it's low ROI and spreads a secret key into a second app.
+**Note:** the `leads` table RLS allows INSERT (the form) but NOT anon SELECT — reading requires the service-role key via a server route, never the anon key.
+
+---
+
 ## Done (shipped 18.09.2026)
 - ✅ 7 guide pages + master pillar page (/guides/stone-guide)
 - ✅ Related-guides cross-links on every guide

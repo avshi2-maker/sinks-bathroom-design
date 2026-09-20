@@ -108,6 +108,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "8-TZvWs28rHhJlFYOEK2H7sWuR5m7Ht1oQ9xy8-G83Q",
+    other: { "p:domain_verify": "ee077a4b921b44c012f5bd31037d5300" },
   },
 };
 

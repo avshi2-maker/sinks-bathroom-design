@@ -39,6 +39,15 @@ Parked upgrade ideas for the marketing site (marble-art.co.il) + YouTube channel
 
 ---
 
+## 6. Social auto-posting bot (Pinterest / IG / FB scheduler) — effort: big
+**Idea:** a scheduler that takes finished pins/posts from a queue and auto-publishes them across Pinterest (and later IG/FB) on a steady cadence, instead of posting each one by hand.
+**Benefit:** content ships daily on its own — consistency (the real ranking lever) without the manual grind.
+**How:** a queue table (Supabase) of ready posts (image URL + title + description + board + link + scheduled_at) → a scheduled task / cron that calls the Pinterest API to publish due items. Pinterest API needs app review + OAuth; IG needs a Business account + Graph API; FB is link-limited (post via WhatsApp-CTA style only).
+**Trigger to build:** ONLY once there is real traction — a steady manual posting rhythm already in place, followers climbing, and Pin Factory producing more pins than can be posted by hand. At 0 followers it is premature engineering (an engine with no fuel); post manually first for 8-12 weeks.
+**Note:** Pinterest API approval can take time; start the app-review application early if this ever triggers. Never auto-post raw links to Facebook (2-link/month cap).
+
+---
+
 ## Done (shipped 18.09.2026)
 - ✅ 7 guide pages + master pillar page (/guides/stone-guide)
 - ✅ Related-guides cross-links on every guide

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "שיש מול פורצלן — איך לבחור את החומר לכיור",
   description: "שיש טבעי או פורצלן? השוואה של יופי, תחזוקה, עמידות ועלות — כדי לבחור את החומר הנכון לכיור שלכם. מדריך מבית Marble Art / מרבל ארט.",
   alternates: { canonical: `${SITE_URL}/guides/marble-vs-porcelain` },
-  openGraph: { type: "article", locale: "he_IL", url: `${SITE_URL}/guides/marble-vs-porcelain`, siteName: "Marble Art Sinks", title: "שיש מול פורצלן — איך לבחור", description: "יופי, תחזוקה, עמידות ועלות — השוואה מלאה.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
+  openGraph: { type: "article", authors: ["Marble Art Sinks"], publishedTime: "2026-09-18T00:00:00+03:00", section: "מדריכי שיש ופורצלן", locale: "he_IL", url: `${SITE_URL}/guides/marble-vs-porcelain`, siteName: "Marble Art Sinks", title: "שיש מול פורצלן — איך לבחור", description: "יופי, תחזוקה, עמידות ועלות — השוואה מלאה.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
 };
 
 const data: GuideData = {

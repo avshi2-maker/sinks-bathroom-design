@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "איך נוצר כיור שיש בעבודת יד — מהגוש ועד ההתקנה",
   description: "כל כיור שיש של Marble Art נחצב, מעוצב ומגולף ביד. מסע מהגוש הטבעי דרך החיתוך והגילוף ועד האיטום, בקרת האיכות וההתקנה. מבית Marble Art / מרבל ארט.",
   alternates: { canonical: `${SITE_URL}/guides/how-its-made` },
-  openGraph: { type: "article", locale: "he_IL", url: `${SITE_URL}/guides/how-its-made`, siteName: "Marble Art Sinks", title: "איך נוצר כיור שיש בעבודת יד", description: "מהגוש הטבעי ועד ההתקנה — כך נולד כיור שיש אמנותי בעבודת יד.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
+  openGraph: { type: "article", authors: ["Marble Art Sinks"], publishedTime: "2026-09-18T00:00:00+03:00", section: "מדריכי שיש ופורצלן", locale: "he_IL", url: `${SITE_URL}/guides/how-its-made`, siteName: "Marble Art Sinks", title: "איך נוצר כיור שיש בעבודת יד", description: "מהגוש הטבעי ועד ההתקנה — כך נולד כיור שיש אמנותי בעבודת יד.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
 };
 
 const data: GuideData = {

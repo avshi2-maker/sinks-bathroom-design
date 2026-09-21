@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "היתרון של כיור בהזמנה אישית — שיש ופורצלן",
   description: "התאמה מושלמת לחלל, שליטה מלאה בעיצוב ואומנות בעבודת יד — היתרונות של כיור שיש או פורצלן בהזמנה אישית. מדריך מבית Marble Art / מרבל ארט.",
   alternates: { canonical: `${SITE_URL}/guides/custom-sinks` },
-  openGraph: { type: "article", locale: "he_IL", url: `${SITE_URL}/guides/custom-sinks`, siteName: "Marble Art Sinks", title: "היתרון של כיור בהזמנה אישית", description: "התאמה מושלמת, שליטה בעיצוב ואומנות בעבודת יד.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
+  openGraph: { type: "article", authors: ["Marble Art Sinks"], publishedTime: "2026-09-18T00:00:00+03:00", section: "מדריכי שיש ופורצלן", locale: "he_IL", url: `${SITE_URL}/guides/custom-sinks`, siteName: "Marble Art Sinks", title: "היתרון של כיור בהזמנה אישית", description: "התאמה מושלמת, שליטה בעיצוב ואומנות בעבודת יד.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
 };
 
 const data: GuideData = {

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "למה שיש טבעי — הבחירה הפרימיום לכיור אמנותי",
   description: "יופי טבעי שאין שני לו, עמידות לאורך שנים והשקעה שמעלה ערך — למה שיש טבעי הוא הבחירה הפרימיום לכיור אמנותי. מדריך מבית Marble Art / מרבל ארט.",
   alternates: { canonical: `${SITE_URL}/guides/why-marble` },
-  openGraph: { type: "article", locale: "he_IL", url: `${SITE_URL}/guides/why-marble`, siteName: "Marble Art Sinks", title: "למה שיש טבעי לכיור אמנותי", description: "יופי טבעי, עמידות והשקעה שמעלה ערך.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
+  openGraph: { type: "article", authors: ["Marble Art Sinks"], publishedTime: "2026-09-18T00:00:00+03:00", section: "מדריכי שיש ופורצלן", locale: "he_IL", url: `${SITE_URL}/guides/why-marble`, siteName: "Marble Art Sinks", title: "למה שיש טבעי לכיור אמנותי", description: "יופי טבעי, עמידות והשקעה שמעלה ערך.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
 };
 
 const data: GuideData = {

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "כיורי שיש קלקטה — האבן שמגדירה יוקרה",
   description: "שיש קלקטה: רקע לבן בהיר, ורידי זהב דרמטיים ונדירות — למה זו האבן שמגדירה חדרי רחצה יוקרתיים, וכיצד לבחור ולטפל בכיור קלקטה. מבית Marble Art / מרבל ארט.",
   alternates: { canonical: `${SITE_URL}/guides/calacatta-marble` },
-  openGraph: { type: "article", locale: "he_IL", url: `${SITE_URL}/guides/calacatta-marble`, siteName: "Marble Art Sinks", title: "כיורי שיש קלקטה — האבן שמגדירה יוקרה", description: "רקע לבן בהיר, ורידים דרמטיים ונדירות — האבן של חדרי הרחצה היוקרתיים.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
+  openGraph: { type: "article", authors: ["Marble Art Sinks"], publishedTime: "2026-09-18T00:00:00+03:00", section: "מדריכי שיש ופורצלן", locale: "he_IL", url: `${SITE_URL}/guides/calacatta-marble`, siteName: "Marble Art Sinks", title: "כיורי שיש קלקטה — האבן שמגדירה יוקרה", description: "רקע לבן בהיר, ורידים דרמטיים ונדירות — האבן של חדרי הרחצה היוקרתיים.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
 };
 
 const data: GuideData = {

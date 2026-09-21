@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: "article",
+    authors: ["Marble Art Sinks"],
+    publishedTime: "2026-09-18T00:00:00+03:00",
+    section: "מדריכי שיש ופורצלן",
     locale: "he_IL",
     url: PAGE_URL,
     siteName: "Marble Art Sinks",

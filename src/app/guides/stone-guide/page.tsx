@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "מדריך האבן — המדריך המלא לכיורי שיש ופורצלן בהזמנה אישית",
   description: "כל מה שצריך לדעת על כיורי שיש ופורצלן: בחירת אבן, שיש מול פורצלן, קלקטה, תחזוקה, איטום, ואיך נוצר כיור בעבודת יד. המדריך המרכזי של Marble Art / מרבל ארט.",
   alternates: { canonical: PAGE_URL },
-  openGraph: { type: "article", locale: "he_IL", url: PAGE_URL, siteName: "Marble Art Sinks", title: "מדריך האבן — המדריך המלא לכיורי שיש ופורצלן", description: "בחירת אבן, השוואות, תחזוקה ותהליך הייצור — כל הידע על כיורי שיש ופורצלן במקום אחד.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
+  openGraph: { type: "article", authors: ["Marble Art Sinks"], publishedTime: "2026-09-18T00:00:00+03:00", section: "מדריכי שיש ופורצלן", locale: "he_IL", url: PAGE_URL, siteName: "Marble Art Sinks", title: "מדריך האבן — המדריך המלא לכיורי שיש ופורצלן", description: "בחירת אבן, השוואות, תחזוקה ותהליך הייצור — כל הידע על כיורי שיש ופורצלן במקום אחד.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
 };
 
 type PillarItem = { slug: string; tag: string; title: string; summary: string };

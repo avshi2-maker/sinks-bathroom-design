@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "תחזוקת כיור שיש — מדריך מעשי לניקוי, איטום והגנה",
   description: "כיור שיש יכול להישאר מרהיב עשרות שנים בטיפול הנכון. מדריך מעשי לניקוי יומיומי, איטום תקופתי וטיפול בכתמים ובצריבה. מבית Marble Art / מרבל ארט.",
   alternates: { canonical: `${SITE_URL}/guides/marble-care` },
-  openGraph: { type: "article", locale: "he_IL", url: `${SITE_URL}/guides/marble-care`, siteName: "Marble Art Sinks", title: "תחזוקת כיור שיש — מדריך מעשי", description: "ניקוי, איטום וטיפול בכתמים — כך שומרים על כיור שיש לשנים.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
+  openGraph: { type: "article", authors: ["Marble Art Sinks"], publishedTime: "2026-09-18T00:00:00+03:00", section: "מדריכי שיש ופורצלן", locale: "he_IL", url: `${SITE_URL}/guides/marble-care`, siteName: "Marble Art Sinks", title: "תחזוקת כיור שיש — מדריך מעשי", description: "ניקוי, איטום וטיפול בכתמים — כך שומרים על כיור שיש לשנים.", images: [{ url: "/og-image.jpg", width: 1200, height: 630 }] },
 };
 
 const data: GuideData = {

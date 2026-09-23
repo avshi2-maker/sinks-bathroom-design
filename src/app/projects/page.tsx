@@ -1,9 +1,12 @@
-// page.tsx (src/app/projects/page.tsx) · updated 19.09.2026 (Asia/Jerusalem)
+// page.tsx (src/app/projects/page.tsx) · updated 23.09.2026 10:39 (Asia/Jerusalem)
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PROJECTS } from "./projects";
+import { fetchPublishedCases, caseImages } from "@/lib/cases";
+
+export const revalidate = 300;
 
 const SITE_URL = "https://www.marble-art.co.il";
 
@@ -19,7 +22,10 @@ export const metadata: Metadata = {
 const card = "group block bg-[var(--color-cream)] rounded-2xl border border-[var(--color-cream-darker)] overflow-hidden hover:border-[var(--color-brass)] transition-colors";
 const cardImg = "w-full aspect-[16/10] object-cover";
 
-export default function ProjectsIndex() {
+export default async function ProjectsIndex() {
+  const cases = await fetchPublishedCases();
+  const caseCards = cases.map((c) => ({ slug: c.slug, title: c.gen.title || "", image: caseImages(c)[0]?.url || "/og-image.jpg", alt: caseImages(c)[0]?.alt || c.gen.title || "", material: c.gen.material || "", area: c.city || "", summary: c.gen.summary || "" }));
+  const all = [...caseCards, ...PROJECTS.map((p) => ({ slug: p.slug, title: p.title, image: p.image, alt: p.title, material: p.material, area: p.area, summary: p.summary }))];
   return (
     <>
       <Header />
@@ -34,10 +40,10 @@ export default function ProjectsIndex() {
 
         <section className="py-14 md:py-20 bg-[var(--color-cream)]">
           <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-8">
-            {PROJECTS.map((p) => (
+            {all.map((p) => (
               <Link key={p.slug} href={`/projects/${p.slug}`} className={card}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={p.image} alt={p.title} className={cardImg} />
+                <img src={p.image} alt={p.alt} className={cardImg} />
                 <div className="p-6">
                   <p className="text-[var(--color-brass-dark)] text-xs font-medium tracking-widest uppercase mb-2">{p.material} · {p.area}</p>
                   <h2 className="text-[var(--color-charcoal)] text-xl font-black mb-2 leading-tight group-hover:text-[var(--color-brass-dark)] transition-colors">{p.title}</h2>

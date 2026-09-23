@@ -1,4 +1,4 @@
-// page.tsx (src/app/projects/[slug]/page.tsx) · updated 19.09.2026 (Asia/Jerusalem)
+// page.tsx (src/app/projects/[slug]/page.tsx) · updated 23.09.2026 10:39 (Asia/Jerusalem)
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
@@ -7,6 +7,12 @@ import { LeadForm } from "@/components/LeadForm";
 import { SelectionProvider } from "@/context/SelectionContext";
 import { SelectionCart } from "@/components/SelectionCart";
 import { PROJECTS, projectBySlug } from "../projects";
+import { fetchCaseBySlug, caseImages } from "@/lib/cases";
+import { CaseStudyView } from "@/components/CaseStudyView";
+
+// Static projects are pre-built; CRM-published case studies render on demand and refresh every 5 min.
+export const revalidate = 300;
+export const dynamicParams = true;
 
 const SITE_URL = "https://www.marble-art.co.il";
 
@@ -17,7 +23,20 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const p = projectBySlug(slug);
-  if (!p) return {};
+  if (!p) {
+    const c = await fetchCaseBySlug(slug);
+    if (!c) return {};
+    const cu = `${SITE_URL}/projects/${c.slug}`;
+    const im = caseImages(c)[0];
+    return {
+      title: `${c.gen.title} | פרויקטים — מרבל ארט`,
+      description: c.gen.meta,
+      keywords: c.gen.tags,
+      alternates: { canonical: cu },
+      openGraph: { type: "article", locale: "he_IL", url: cu, siteName: "Marble Art Sinks", title: c.gen.title, description: c.gen.meta, publishedTime: c.published_at || undefined, images: im ? [{ url: im.url, alt: im.alt }] : undefined },
+      robots: { index: true, follow: true },
+    };
+  }
   const url = `${SITE_URL}/projects/${p.slug}`;
   const image = p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}`;
   return {
@@ -36,7 +55,11 @@ const specPill = "bg-[var(--color-brass)]/10 border border-[var(--color-brass)]/
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const p = projectBySlug(slug);
-  if (!p) notFound();
+  if (!p) {
+    const c = await fetchCaseBySlug(slug);
+    if (!c) notFound();
+    return <CaseStudyView c={c} />;
+  }
   const url = `${SITE_URL}/projects/${p.slug}`;
   const image = p.image.startsWith("http") ? p.image : `${SITE_URL}${p.image}`;
 

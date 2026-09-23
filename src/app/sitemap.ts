@@ -1,11 +1,15 @@
 import type { MetadataRoute } from "next";
 import { CITIES } from "./marble-sinks/cities";
 import { PROJECTS } from "./projects/projects";
+import { fetchPublishedCases } from "@/lib/cases";
+
+export const revalidate = 300;
 
 const SITE_URL = "https://www.marble-art.co.il";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const cases = await fetchPublishedCases();
 
   return [
     {
@@ -103,6 +107,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ...CITIES.map((c) => ({
       url: `${SITE_URL}/marble-sinks/${c.slug}`,
       lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+      ...cases.map((c) => ({
+      url: `${SITE_URL}/projects/${c.slug}`,
+      lastModified: new Date(c.updated_at),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

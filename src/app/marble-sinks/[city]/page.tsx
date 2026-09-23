@@ -1,9 +1,17 @@
-// page.tsx (src/app/marble-sinks/[city]/page.tsx) · updated 19.09.2026 (Asia/Jerusalem)
+// page.tsx (src/app/marble-sinks/[city]/page.tsx) · updated 23.09.2026 10:39 (Asia/Jerusalem)
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { LeadForm } from "@/components/LeadForm";
+import Link from "next/link";
+import { fetchPublishedCases, caseImages } from "@/lib/cases";
+
+// Local proof: CRM-published projects in this city appear here automatically (refresh every 5 min).
+export const revalidate = 300;
+
+const pcard = "block bg-[var(--color-cream)] rounded-2xl border border-[var(--color-cream-darker)] overflow-hidden hover:border-[var(--color-brass)] transition-colors";
+const pimg = "w-full aspect-[16/10] object-cover";
 import { SelectionProvider } from "@/context/SelectionContext";
 import { SelectionCart } from "@/components/SelectionCart";
 import { CITIES, cityBySlug } from "../cities";
@@ -38,6 +46,7 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
   const { city } = await params;
   const c = cityBySlug(city);
   if (!c) notFound();
+  const local = (await fetchPublishedCases()).filter((x) => (x.city || "").trim() === c.he);
 
   const pillars = [
     { t: "עיצוב אישי", d: `אנחנו מלווים לקוחות ${c.inCity} מהסקיצה ועד ההתקנה — כיור שיש שמתוכנן בדיוק לחלל ולסגנון שלכם.` },
@@ -86,6 +95,26 @@ export default async function CityPage({ params }: { params: Promise<{ city: str
             <p className="text-center text-[var(--color-charcoal)]/60 mt-10 max-w-2xl mx-auto leading-relaxed">אנחנו עובדים עם לקוחות פרטיים, מעצבי פנים ואדריכלים {c.inCity} ובכל אזור המרכז והשרון — שיפוצי אמבטיה, בנייה חדשה והחלפת כיורים.</p>
           </div>
         </section>
+
+        {local.length ? (
+          <section className="py-16 md:py-20 bg-[var(--color-cream)]">
+            <div className="max-w-5xl mx-auto px-6">
+              <h2 className="text-[var(--color-charcoal)] text-2xl md:text-3xl font-black mb-8 text-center">פרויקטים שביצענו {c.inCity}</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                {local.map((x) => (
+                  <Link key={x.slug} href={`/projects/${x.slug}`} className={pcard}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={caseImages(x)[0]?.url || "/og-image.jpg"} alt={caseImages(x)[0]?.alt || x.gen.title || ""} className={pimg} loading="lazy" />
+                    <div className="p-5">
+                      <h3 className="text-[var(--color-charcoal)] text-lg font-black mb-1 leading-tight">{x.gen.title}</h3>
+                      <p className="text-[var(--color-charcoal)]/65 text-sm leading-relaxed">{x.gen.summary}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        ) : null}
 
         <section id="lead-form" className="py-20 md:py-32 bg-[var(--color-cream)]">
           <div className="max-w-3xl mx-auto px-6">

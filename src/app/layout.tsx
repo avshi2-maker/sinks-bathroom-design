@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Heebo } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Marble Art Sinks",
   },
   description:
-    "כיורי שיש איטלקי בעבודת יד בהזמנה אישית — למעצבי פנים, אדריכלים ובתים פרטיים. שיש Calacatta, Statuario ומדגסקר, גימור ידני ותצוגה מקדימה ב-AI לפני שחותכים את האבן. מבית מרבל ארט.",
+    "כיורי שיש איטלקי בעבודת יד בהזמנה אישית לבתים, מעצבים ואדריכלים. Calacatta, Statuario ומדגסקר, והדמיית AI חינם לפני חיתוך האבן.",
   keywords: [
     "כיורי שיש",
     "כיור שיש איטלקי",

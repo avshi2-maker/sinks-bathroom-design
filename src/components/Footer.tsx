@@ -1,5 +1,5 @@
 "use client";
-// Footer.tsx (src/components/Footer.tsx) · updated 20.09.2026 (Asia/Jerusalem)
+// Footer.tsx (src/components/Footer.tsx) · updated 21.10.2026 13:15 (Asia/Jerusalem) — + "part of the Sapirim group" link to www.sapirim.com (site-wide link for Google) · 20.09.2026
 // Marble Art wordmark + social icons + internal SEO links + service-area links + copyright.
 import Link from "next/link";
 import { CITIES } from "@/app/marble-sinks/cities";
@@ -71,6 +71,7 @@ export function Footer() {
           <a href={avshiHref} target="_blank" rel="noopener noreferrer" onClick={onAvshiClick} className={linkCls}>וואטסאפ - אבשי 050-5231042</a>
           <a href="#lead-form" onClick={onFormClick} className={linkCls}>מלאו טופס</a>
         </div>
+        <p className="text-sm mb-4"><a href="https://www.sapirim.com/he" target="_blank" rel="noopener" className={linkCls}>חלק מקבוצת ספירים — סיליקונים לתעשייה, ריצוף ו-AI</a></p>
         <p className="text-xs text-[var(--color-cream)]/40">© 2026 Marble Art · מרבל ארט. כל הזכויות שמורות.</p>
       </div>
     </footer>

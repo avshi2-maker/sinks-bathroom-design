@@ -176,7 +176,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="antialiased">{children}<StickyWhatsApp /><MetaPixel /></body>
+      <body className="antialiased">{children}<StickyWhatsApp /><MetaPixel />  <span title="🛡️ Vercel Firewall · protected site (10/11/2026)" aria-label="protected" style={{ position: "fixed", left: 6, bottom: 4, zIndex: 40, fontSize: 13, opacity: 0.7, lineHeight: 1 }}>🛡️</span>
+      </body>
       <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
     </html>
   );
